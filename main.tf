@@ -52,7 +52,7 @@ resource "aws_route_table_association" "private" {
 resource "aws_route" "nat_gateway" {
   route_table_id         = element(aws_route_table.private.*.id, count.index)
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = element(var.nat_gateway_id, count.index)
+  gateway_id             = element(var.nat_gateway_ids, count.index)
   count                  = length(var.cidrs)
 
   depends_on = [
